@@ -43,7 +43,7 @@ class BiTree(object):
     else:
       node_queue = []
       node_queue.append(self.root)
-      while len(node_queue) >= 0:
+      while len(node_queue) > 0:
         tree_node = node_queue.pop(0)
         if tree_node.lchild is None:
           tree_node.lchild = node
@@ -60,6 +60,6 @@ class BiTree(object):
     for elem in elem_list:
       self.add_node(elem)
 
-  
+
 
 
