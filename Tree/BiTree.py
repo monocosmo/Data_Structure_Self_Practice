@@ -1,4 +1,4 @@
-# Implement Binary Tree
+# Implement Binary Tree with Node sub class
 
 # Node
 class Node(object):
@@ -21,7 +21,8 @@ class Node(object):
   def __str__(self):
     return(str(self.elem))
 
-# node_test = Node("a")
+# node_test = Node(1)
+# print(type(node_test.elem))
 # print(node_test.get_elem())
 # print(node_test)
 # print(node_test.dict_form())
