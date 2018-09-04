@@ -6,9 +6,6 @@ class BSTree(object):
     self.lchild = None
     self.rchild = None
 
-  def get_elem(self):
-    return self.elem
-
   def dict_form(self):
     dict_set = {
       "element": self.elem,
@@ -20,26 +17,66 @@ class BSTree(object):
   def __str__(self):
     return(str(self.elem))
 
-# Node indertion (recursive)
-def insert(tree, elem):
-  if tree.elem is None:
-    tree.elem = elem
-  elif tree.elem == elem:
-    tree.elem == elem
-  elif tree.elem < elem:
-    if tree.lchild is None:
-      tree.lchild = BSTree(elem)
+  # Node indertion (recursive)
+  def insertR(self, elem):
+    if self.elem is None:
+      self.elem = elem
+    elif self.elem == elem:
+      self.elem == elem
+    elif self.elem > elem:
+      if self.lchild is None:
+        self.lchild = BSTree(elem)
+      else:
+        self.lchild.insertR(elem)
+    elif self.elem < elem:
+      if self.rchild is None:
+        self.rchild = BSTree(elem)
+      else:
+        self.rchild.insertR(elem)
+
+  # pre-order (recursive)
+  def preOrderR(self ,root):
+    if root is None:
+      return
     else:
-      insert(tree.lchild, elem)
-  else:
-    if tree.rchild is None:
-      tree.rchild = BSTree(elem)
+      print(root.elem, end=",")
+      self.preOrderR(root.lchild)
+      self.preOrderR(root.rchild)
+
+  # in-order (recursive)
+  def inOrderR(self ,root):
+    if root is None:
+      return
     else:
-      insert(tree.rchild, elem)
+      self.inOrderR(root.lchild)
+      print(root.elem, end=",")
+      self.inOrderR(root.rchild)
+
+  # post-order (recursive)
+  def postOrderR(self ,root):
+    if root is None:
+      return
+    else:
+      self.postOrderR(root.lchild)
+      self.postOrderR(root.rchild)
+      print(root.elem, end=",")
 
 tree_test = BSTree()
-insert(tree_test ,8)
-insert(tree_test ,10)
-insert(tree_test ,3)
-insert(tree_test ,1)
-print(tree_test)
+tree_test.insertR(8)
+tree_test.insertR(3)
+tree_test.insertR(10)
+tree_test.insertR(1)
+tree_test.insertR(6)
+tree_test.insertR(4)
+tree_test.insertR(7)
+tree_test.insertR(14)
+tree_test.insertR(13)
+print("pre-order (recursive):")
+tree_test.preOrderR(tree_test)
+print()
+print("in-order (recursive):")
+tree_test.inOrderR(tree_test)
+print()
+print("post-order (recursive):")
+tree_test.postOrderR(tree_test)
+print()
