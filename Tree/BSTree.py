@@ -134,6 +134,21 @@ class BSTree(object):
       if node.rchild:
         helpQueue.append(node.rchild)
 
+  # traverse
+  def traverse(self, root):
+    result = []
+    self.traverseHelp(root, result)
+    return result
+
+  # traverse help function
+  def traverseHelp(self, root, result):
+    if root is None:
+      return
+    else:
+      result.append(root.elem)
+      self.traverseHelp(root.lchild, result)
+      self.traverseHelp(root.rchild, result)
+
 tree_test = BSTree()
 tree_test.insertR(8)
 tree_test.insertR(3)
@@ -164,4 +179,7 @@ tree_test.postOrder(tree_test)
 print()
 print("level-order:")
 tree_test.levelOrder(tree_test)
+print()
+print("traverse:")
+print(tree_test.traverse(tree_test))
 print()
