@@ -166,17 +166,29 @@ class BSTree(object):
 
   # max depth (traverse)
   def maxDepthT(self, root):
+    global depth
     depth = 0
-    self.maxDepthTHelper(root, depth, 1)
+    self.maxDepthTHelper(root, 1)
     return depth
 
-  def maxDepthTHelper(self, root, depth, currentDepth):
+  def maxDepthTHelper(self, root, currentDepth):
+    global depth
     if root is None:
       return
     elif currentDepth > depth:
       depth = currentDepth
-    self.maxDepthTHelper(root.lchild, depth, currentDepth + 1)
-    self.maxDepthTHelper(root.rchild, depth, currentDepth + 1)
+    self.maxDepthTHelper(root.lchild, currentDepth + 1)
+    self.maxDepthTHelper(root.rchild, currentDepth + 1)
+
+  # max depth (divide and conquer)
+  def maxDepthDC(self, root):
+    if root is None:
+      # Note: return 0 when reaches the leaf
+      return 0
+    else:
+      left = self.maxDepthDC(root.lchild)
+      right = self.maxDepthDC(root.rchild)
+      return max(left, right) + 1
 
 tree_test = BSTree()
 tree_test.insertR(8)
@@ -215,3 +227,5 @@ print("divide and conquer:")
 print(tree_test.dAndC(tree_test))
 print("max depth (traverse)")
 print(tree_test.maxDepthT(tree_test))
+print("max depth (divide and conquer)")
+print(tree_test.maxDepthDC(tree_test))
