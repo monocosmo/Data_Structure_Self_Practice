@@ -164,21 +164,19 @@ class BSTree(object):
       result = result + left + right
       return result
 
-  # global variable
-  depth = 0
-  
   # max depth (traverse)
   def maxDepthT(self, root):
-    self.maxDepthTHelper(root, 1)
-    return self.depth
+    depth = 0
+    self.maxDepthTHelper(root, depth, 1)
+    return depth
 
-  def maxDepthTHelper(self, root, currentDepth):
+  def maxDepthTHelper(self, root, depth, currentDepth):
     if root is None:
       return
-    elif currentDepth > self.depth:
-      self.depth = currentDepth
-    self.maxDepthTHelper(root.lchild, currentDepth + 1)
-    self.maxDepthTHelper(root.rchild, currentDepth + 1)
+    elif currentDepth > depth:
+      depth = currentDepth
+    self.maxDepthTHelper(root.lchild, depth, currentDepth + 1)
+    self.maxDepthTHelper(root.rchild, depth, currentDepth + 1)
 
 tree_test = BSTree()
 tree_test.insertR(8)
