@@ -149,6 +149,21 @@ class BSTree(object):
       self.traverseHelp(root.lchild, result)
       self.traverseHelp(root.rchild, result)
 
+  # dived & conquer
+  def dAndC(self, root):
+    result = []
+    if root is None:
+      return result
+    else:
+      # divide
+      left = self.dAndC(root.lchild)
+      right = self.dAndC(root.rchild)
+
+      # conquer
+      result.append(root.elem)
+      result = result + left + right
+      return result
+
 tree_test = BSTree()
 tree_test.insertR(8)
 tree_test.insertR(3)
@@ -182,4 +197,5 @@ tree_test.levelOrder(tree_test)
 print()
 print("traverse:")
 print(tree_test.traverse(tree_test))
-print()
+print("divide and conquer:")
+print(tree_test.dAndC(tree_test))
