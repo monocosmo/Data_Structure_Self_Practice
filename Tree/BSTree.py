@@ -183,7 +183,7 @@ class BSTree(object):
   # max depth (divide and conquer)
   def maxDepthDC(self, root):
     if root is None:
-      # Note: return 0 when reaches the leaf
+      # Note: return 0 when reaches the child of leaf
       return 0
     else:
       left = self.maxDepthDC(root.lchild)
